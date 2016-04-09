@@ -15,13 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::any('/admin','UserController@admin_index');
+  Route::any('/admin','UserController@admin_login');
 
-Route::group(array('namespace' => 'admin', 'prefix' => 'admin'), function() {
- 	 Route::get('/', function () {
-	    return view('welcome');
-	});
- 	 Route::get('/dashboard', function () {
-	    return view('welcome');
-	});
+
+Route::group(['prefix' => 'admin'], function () {
+
+
+   	  Route::any('/','UserController@admin_login');
+   	   Route::any('/dashboard','UserController@admin_dashboard');
+   	   Route::any('/login','UserController@admin_login');
+
 });
