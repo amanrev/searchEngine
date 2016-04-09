@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::any('/admin','UserController@admin_index');
 
-Route::group(array('namespace' => 'admin', 'prefix' => 'admin'), function() {
+/*Route::group(array('namespace' => 'admin', 'prefix' => 'admin'), function() {
  	 Route::get('/', function () {
 	    return view('welcome');
 	});
@@ -25,3 +25,4 @@ Route::group(array('namespace' => 'admin', 'prefix' => 'admin'), function() {
 	    return view('welcome');
 	});
 });
+*/
