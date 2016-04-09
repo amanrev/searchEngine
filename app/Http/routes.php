@@ -16,3 +16,7 @@ Route::get('/', function () {
 });
 
 Route::any('/admin','UserController@admin_index');
+
+Route::get('/admin', function () {
+    return view('welcome');
+});
