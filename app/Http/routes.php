@@ -15,4 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::any('/admin')
+Route::any('/admin','UserController@admin_index');
