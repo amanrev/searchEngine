@@ -17,6 +17,11 @@ Route::get('/', function () {
 
 Route::any('/admin','UserController@admin_index');
 
-Route::get('/admin', function () {
-    return view('welcome');
+Route::group(array('namespace' => 'admin', 'prefix' => 'admin'), function() {
+ 	 Route::get('/', function () {
+	    return view('welcome');
+	});
+ 	 Route::get('/dashboard', function () {
+	    return view('welcome');
+	});
 });
