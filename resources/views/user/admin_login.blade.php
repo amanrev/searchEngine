@@ -48,7 +48,7 @@
         <div class="forget-password">
             <h4>Forgot your password ?</h4>
             <p>
-                 no worries, click <a href="javascript:;" id="forget-password">
+                 no worries, click <a href="javascript:;" id="forget-password2">
                 here </a>
                 to reset your password.
             </p>

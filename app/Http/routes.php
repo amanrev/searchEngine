@@ -28,9 +28,10 @@ Route::group(['prefix' => 'admin'], function () {
    	  Route::any('/logout','UserController@admin_logout');
    	  Route::any('/profile','UserController@admin_profile');
    	  Route::any('/saveProfile','UserController@admin_saveProfile');
-   	  Route::any('/changeAdminImage ','UserController@admin_changeAdminImage');
    	  Route::any('/checkAdminPassword ','UserController@admin_checkAdminPassword');
    	  Route::any('/changePassword','UserController@admin_changePassword');
+      Route::any('/changeAdminImage','UserController@admin_changeAdminImage');
+      Route::any('/addUser','UserController@admin_addUser');
 
 
 

@@ -109,7 +109,7 @@
 						<?= @ucfirst($_SESSION['AdminInfo']->fullname); ?> </span>
 						<img 
 								<?php if(!empty($_SESSION['AdminInfo']->image)){ ?>
-								src="{{URL::asset('profilepics')}}<?= '/'.$_SESSION['AdminInfo']->image.'/'.$_SESSION['AdminInfo']->image; ?>" 
+								src="{{URL::asset('public/profilepics')}}<?= '/'.$_SESSION['AdminInfo']->image.'/'.$_SESSION['AdminInfo']->image; ?>" 
 								<?php } else { ?>
 								src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
 								<?php } ?>

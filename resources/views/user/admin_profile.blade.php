@@ -28,7 +28,7 @@
 							<div class="profile-userpic">
 								<img 
 								<?php if(!empty($data->image)){ ?>
-								src="{{URL::asset('profilepics')}}<?= '/'.$data->image.'/'.$data->image; ?>" 
+								src="{{URL::asset('public/profilepics')}}<?= '/'.$data->image.'/'.$data->image; ?>" 
 								<?php } else { ?>
 								src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&amp;text=no+image"
 								<?php } ?>
@@ -133,7 +133,7 @@
 														</div>
 													</div>
 													<div class="margin-top-10">
-														<input type="button" value="Submit" class="btn green-haze">
+														<input type="submit" value="Submit" class="btn green-haze">
 														<a href="#" class="btn default">
 														Cancel </a>
 													</div>
@@ -175,7 +175,7 @@
 	</div>
 </div>
 @endsection 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="{{URL::asset('assets/js/ajax.js')}}"></script>
 <script type="text/javascript">
     $(document).ready(function(){
 

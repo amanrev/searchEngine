@@ -120,8 +120,9 @@ class UserController extends Controller
       return Redirect::action('UserController@admin_profile');
     }
 
-    public function admin_changeAdminImage(Request $request)
+    public function admin_changeAdminImage()
     {
+
       if(Input::file())
         {
             $file = Input::file('image');
@@ -131,11 +132,20 @@ class UserController extends Controller
             $file->move($path, $filename);
             DB::table('admins')->where('id',$_SESSION['AdminId'])->update(array('image'=>$filename));
             $UserUpdatedDat=DB::table('admins')->where('id',$_SESSION['AdminId'])->first();
-            $_SESSION['UserInfo']=$UserUpdatedDat;
+            $_SESSION['AdminInfo']=$UserUpdatedDat;
             return Redirect::action('UserController@admin_profile');
            }
     }
 
-    
+   public function admin_addUser()
+    {
+     
+        return view('user.admin_addUser');
+        if(!empty($_POST))
+        {
+        echo "Under Process";die;
+        }
+      
+    }
 
 }

@@ -17,7 +17,7 @@
 						</a>
 						<ul class="sub-menu">
 							<li>
-								<a href="javascript:void(0);">
+								<a href="<?= HTTP_ROOT ?>addUser">
 								<i class="icon-home"></i>
 								Add Users</a>
 							</li>
