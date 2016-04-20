@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
   //Route::any('/admin','UserController@admin_login');
 
 
@@ -32,6 +33,16 @@ Route::group(['prefix' => 'admin'], function () {
    	  Route::any('/changePassword','UserController@admin_changePassword');
       Route::any('/changeAdminImage','UserController@admin_changeAdminImage');
       Route::any('/addUser','UserController@admin_addUser');
+      Route::any('/checkEmail','UserController@admin_checkEmail');
+      Route::any('/forgotPassword','UserController@admin_forgotPassword');
+      Route::any('/resetPassword/{id}/{key}','UserController@admin_resetPassword');
+      Route::any('/setNewPassword','UserController@admin_setNewPassword');
+      Route::any('/selectPlan','UserController@admin_selectPlan');
+      Route::any('/editPlans','UserController@admin_editPlans');
+      Route::any('/selectMethod/{id}','UserController@admin_selectMethod');
+
+
+
 
 
 

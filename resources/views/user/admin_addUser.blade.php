@@ -32,7 +32,7 @@
 							</div>
 						</div>
 						<div class="portlet-body form">
-							<form id="addUserForm" enctype="multipart/form-data" method="post" action="" class="form-horizontal" role="form">
+							<form id="addUserForm" enctype="multipart/form-data" method="post" action="{{action('UserController@admin_addUser')}}" class="form-horizontal" role="form">
 								   <h4 style="margin-left:22px;padding-top:20px">User Details</h4>
 								 <hr>
 								<div class="form-body">
@@ -53,7 +53,7 @@
 												<span class="input-group-addon">
 												<i class="fa fa-envelope"></i>
 												</span>
-												<input type="email" name="email" class="form-control" placeholder="Email Address">
+												<input type="email" autocomplete="off" name="email" class="form-control" placeholder="Email Address">
 											</div>
 										</div>
 									</div>
@@ -71,7 +71,7 @@
 									<div  class="form-group">
 										<label class="col-md-3 control-label">UserName <!-- <span style="color:#850400">*</span> --></label>
 										<div class="col-md-5">
-											<input id="customerVal" type="text" autocomplete="off" name="username"  class="form-control" placeholder="User Name">
+											<input id="customerVal" autocomplete="off" type="text" autocomplete="off" name="username"  class="form-control" placeholder="User Name">
 											
 										</div>
 									</div>

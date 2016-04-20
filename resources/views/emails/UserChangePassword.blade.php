@@ -1,0 +1,1 @@
+Click on the link to set your password.<a style="text-decoration:none;" href="localhost/smartsearch/admin/resetPassword/<?php echo $encode_id; ?>/<?php echo $encode_key; ?>" target="_blank">Click here</a>

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c284a9c122da36c99a8b6597bdce7aa6",
-    "content-hash": "8b1485987e7c5949da82435d403e52e8",
+    "hash": "7f1376f2b6c22a8b11881b622fe80654",
+    "content-hash": "e687a10a4b806890c77b17a462bef529",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -786,6 +786,68 @@
             "time": "2016-03-18 20:34:03"
         },
         {
+            "name": "pelago/emogrifier",
+            "version": "V1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jjriv/emogrifier.git",
+                "reference": "1160bcbc523c7941d2d0dc2a9e59c51c66420b4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jjriv/emogrifier/zipball/1160bcbc523c7941d2d0dc2a9e59c51c66420b4b",
+                "reference": "1160bcbc523c7941d2d0dc2a9e59c51c66420b4b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.8.11",
+                "squizlabs/php_codesniffer": "2.3.4",
+                "typo3-ci/typo3sniffpool": "2.1.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Pelago\\": "Classes/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "John Reeve",
+                    "email": "jreeve@pelagodesign.com"
+                },
+                {
+                    "name": "Cameron Brooks"
+                },
+                {
+                    "name": "Jaime Prado"
+                },
+                {
+                    "name": "Oliver Klee",
+                    "email": "typo3-coding@oliverklee.de"
+                },
+                {
+                    "name": "Roman Ožana",
+                    "email": "ozana@omdesign.cz"
+                }
+            ],
+            "description": "Converts CSS styles into inline style attributes in your HTML code",
+            "homepage": "http://www.pelagodesign.com/sidecar/emogrifier/",
+            "time": "2015-10-14 22:22:15"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.0",
             "source": {
@@ -894,6 +956,49 @@
                 "shell"
             ],
             "time": "2016-03-09 05:03:14"
+        },
+        {
+            "name": "snowfire/beautymail",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Snowfire/Beautymail.git",
+                "reference": "ff73103c841e9d0cd590b5eba59e19c2c12594a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Snowfire/Beautymail/zipball/ff73103c841e9d0cd590b5eba59e19c2c12594a1",
+                "reference": "ff73103c841e9d0cd590b5eba59e19c2c12594a1",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "4.*|5.*",
+                "pelago/emogrifier": "@dev",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Snowfire\\Beautymail\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Emil Sundberg",
+                    "email": "emil@snowfire.net"
+                }
+            ],
+            "description": "Send beautiful html emails with Laravel",
+            "keywords": [
+                "email",
+                "html",
+                "laravel"
+            ],
+            "time": "2016-04-19 06:43:39"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -1780,6 +1885,104 @@
         }
     ],
     "packages-dev": [
+        {
+            "name": "codezero/cookie",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codezero-be/cookie.git",
+                "reference": "5300089c9dc7bd48c9865d53c3aed8bd513da6d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codezero-be/cookie/zipball/5300089c9dc7bd48c9865d53c3aed8bd513da6d2",
+                "reference": "5300089c9dc7bd48c9865d53c3aed8bd513da6d2",
+                "shasum": ""
+            },
+            "require": {
+                "codezero/encrypter": "~1.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "henrikbjorn/phpspec-code-coverage": "~1.0",
+                "illuminate/cookie": "~5.0",
+                "illuminate/http": "~5.0",
+                "illuminate/support": "~5.0",
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeZero\\Cookie\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Vermeyen",
+                    "email": "ivan@codezero.be"
+                }
+            ],
+            "description": "Your friendly, furry cookie monster. Get and set cookies with ease.",
+            "keywords": [
+                "cookie",
+                "encrypt",
+                "laravel",
+                "php"
+            ],
+            "time": "2015-08-16 22:40:51"
+        },
+        {
+            "name": "codezero/encrypter",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/codezero-be/encrypter.git",
+                "reference": "4db9dbee74df6a6b64aded1fc74788ae38ea3c45"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/codezero-be/encrypter/zipball/4db9dbee74df6a6b64aded1fc74788ae38ea3c45",
+                "reference": "4db9dbee74df6a6b64aded1fc74788ae38ea3c45",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/contracts": "~5.0",
+                "illuminate/encryption": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "require-dev": {
+                "henrikbjorn/phpspec-code-coverage": "~1.0",
+                "phpspec/phpspec": "~2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "CodeZero\\Encrypter\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ivan Vermeyen",
+                    "email": "ivan@codezero.be"
+                }
+            ],
+            "description": "Encrypt and decrypt strings in PHP.",
+            "keywords": [
+                "encrypt",
+                "encryption",
+                "laravel",
+                "php"
+            ],
+            "time": "2015-03-28 00:11:59"
+        },
         {
             "name": "doctrine/instantiator",
             "version": "1.0.5",
@@ -3007,7 +3210,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "snowfire/beautymail": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

@@ -28,6 +28,12 @@
 							</li>
 						</ul>
 					</li>
+					<li class="start ">
+						<a href="<?= HTTP_ROOT .'editPlans' ?>">
+						<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+						<span class="title">Edit Plans</span>
+						</a>
+					</li>
 					
 				
 					<li>

@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use DB;
 use Session;
 use Cookie;
+use Crypt;
 use App\Image;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Cookie\CookieJar;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -27,11 +31,12 @@ class UserController extends Controller
       }
   }
 
-  public function admin_log()
+  public function admin_log(CookieJar $cookieJar)
   {
 
     $password=md5($_POST['password']);
     $username=$_POST['username'];
+
     $Info= DB::table('admins')
           ->where('username',$username)
           ->where('password',$password)
@@ -39,10 +44,22 @@ class UserController extends Controller
     if(!empty($Info)){
       $_SESSION['AdminInfo'] = $Info;
       $_SESSION['AdminId']=$Info->id;
+      if(!empty($_POST['remember']))
+      {
+        $cookieJar->queue(cookie('username', $_SESSION['AdminInfo']->username, 45000));
+        $cookieJar->queue(cookie('password', $_POST['password'], 45000));
+      }
+      else
+      {
+        $cookieJar->queue(cookie('username', "", 45000));
+        $cookieJar->queue(cookie('password', "", 45000));
+      }
+      
       return Redirect::action('UserController@admin_dashboard');
     }
     else
     {
+      Session::flash('flash_message_error', 'Please Check Email or Password.');
       return Redirect::action('UserController@admin_login');
     }
   }
@@ -59,7 +76,6 @@ class UserController extends Controller
       }
       else
       {
-
         return view('user.admin_dashboard');
       }
     }
@@ -67,6 +83,7 @@ class UserController extends Controller
    
     public function admin_logout(){
     session_destroy();
+     Session::flash('flash_message_success', 'Logout Successfully.');
     return Redirect::action('UserController@admin_login');
     }
 
@@ -140,12 +157,140 @@ class UserController extends Controller
    public function admin_addUser()
     {
      
-        return view('user.admin_addUser');
         if(!empty($_POST))
         {
-        echo "Under Process";die;
+          $_POST['created']=date('Y-m-d');
+          DB::table('users')->insert($_POST);
+          return Redirect::action('UserController@admin_selectPlan');
+        }
+        else
+        {
+          return view('user.admin_addUser');
         }
       
+    }
+
+    public function admin_selectPlan(){
+      $plans= DB::table('plans')->get();
+       return view('user.admin_selectPlan')->with('plans',$plans);
+    }
+
+    public function admin_editPlans(){
+       return view('user.admin_editPlans');
+    }
+
+    public function admin_selectMethod($id=null){
+
+       $planId=convert_uudecode(base64_decode($id));
+       return view('user.admin_selectMethod')->with('planId',$planId);
+    }
+
+    public function admin_checkEmail()
+    {
+
+      $data=DB::table('admins')->where('email_id',$_POST['value'])->first();
+      if(!empty($data))
+      {
+        echo 1;die;
+      }
+      else
+      {
+        echo 0;die;
+      }
+    
+    }
+
+
+    public function admin_forgotPassword()
+    {
+        $userInfo  = DB::table('admins')
+                    ->where('email_id', $_POST['email'])
+                    ->first();
+            if(!empty($userInfo))
+            {
+              //echo "<pre>"; print_r($userInfo);die;
+              $key=mt_rand(6,1000);
+              $encode_key=Crypt::encrypt($key);
+              $id=$userInfo->id;
+              $email=$userInfo->email_id;
+              $encode_id=Crypt::encrypt($id);
+              $messageData = [
+                    'encode_key' => $encode_key,
+                    'encode_id' => $encode_id
+                ];
+              DB::table('admins')->where('id',$userInfo->id)->update(array('admins.activation_key'=>$encode_key));
+              /*Mail::send('emails.UserChangePassword', $messageData, function($message) use ($email){
+                    $message->to($email)->subject('Change Your Password');
+                });*/
+
+              Mail::send('emails.UserChangePassword', $messageData, function($message) {
+              $message->to('singh.amanpreet288@gmail.com', 'Aman')->subject('Change Your Password');
+            });
+              Session::flash('flash_message_success', 'Change Password link has been sent to your email address.');
+              return redirect('/admin');
+              
+             
+            }
+    }
+
+
+      public function admin_resetPassword($id = null,$Key = null){
+       if(!empty($id) && !empty($Key)){
+            $detail['id']=$id;
+            $detail['key']=$Key;
+            $ide=Crypt::decrypt($id);
+            $userInfo  = DB::table('admins')
+                        ->where('id',$ide)
+                        ->first();
+            $userInfo  =  json_decode( json_encode($userInfo), true);
+            $detail['email'] = $userInfo['email_id'];
+            $key=Crypt::decrypt($Key);
+            if($Key!=$userInfo['activation_key'] || $ide!=$userInfo['id'])
+              {  
+                  Session::flash('flash_message_error', 'This link has been expired.');
+                  return redirect('/admin');
+              }
+             else
+              {
+                 return view('user.admin_resetPassword')->with('details',$detail);
+              }
+            }
+            else
+            {
+                 Session::flash('flash_message_error', 'Some Error occured, Try Later.');
+                 return redirect('/admin');
+            }
+            
+    }
+
+    public function admin_setNewPassword(){
+
+      if(!empty($_POST))
+      {
+        if($_POST['password']!=$_POST['re_password']){
+             Session::flash('flash_message_error', 'New Password and confirm Password does not match.');
+             return Redirect::back();
+        }
+        else
+        {
+            $ide=Crypt::decrypt($_POST['id']);
+            $userInfo  = DB::table('admins')
+                            ->where('id',$ide)
+                            ->first();
+            $userInfo  =  json_decode( json_encode($userInfo), true);
+            if(!empty($userInfo)){
+            $dataNew=array(
+              'activation_key'=>"",
+              'password'=>md5($_POST['password'])
+              );
+            DB::table('admins')->where('id',$ide)->update($dataNew);
+            Session::flash('flash_message_success', 'Password has been updated successfully.');
+            return redirect('/admin');
+          }
+          Session::flash('flash_message_error', 'Some Error occured,Try Lateradmin');
+         return redirect('/admin');
+        }
+      }
     }
 
 }
