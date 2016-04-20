@@ -36,7 +36,7 @@
 								   <h4 style="margin-left:22px;padding-top:20px">User Details</h4>
 								 <hr>
 								<div class="form-body">
-								                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+								                <input type="hidden" id="token" name="_token" value="{{ csrf_token() }}">
 
 									<div  class="form-group">
 										<label class="col-md-3 control-label">Full Name <!-- <span style="color:#850400">*</span> --></label>
@@ -71,7 +71,7 @@
 									<div  class="form-group">
 										<label class="col-md-3 control-label">UserName <!-- <span style="color:#850400">*</span> --></label>
 										<div class="col-md-5">
-											<input id="customerVal" autocomplete="off" type="text" autocomplete="off" name="username"  class="form-control" placeholder="User Name">
+											<input id="username" autocomplete="off" type="text" autocomplete="off" name="username"  class="form-control" placeholder="User Name">
 											
 										</div>
 									</div>
@@ -79,7 +79,7 @@
 									<div  class="form-group">
 										<label class="col-md-3 control-label">Password <!-- <span style="color:#850400">*</span> --></label>
 										<div class="col-md-5">
-											<input id="customerVal" type="text" autocomplete="off" name="password"  class="form-control" placeholder="Password">
+											<input  type="text" autocomplete="off" name="password"  class="form-control" placeholder="Password">
 											<div style="padding-top:10px" id="NameResponse"></div>
 										</div>
 									</div>
@@ -87,7 +87,7 @@
 									<div  class="form-group">
 										<label class="col-md-3 control-label">Zip Code <!-- <span style="color:#850400">*</span> --></label>
 										<div class="col-md-5">
-											<input id="customerVal" type="text" autocomplete="off" name="zip_code"  class="form-control" placeholder="Zip Code">
+											<input  type="text" autocomplete="off" name="zip_code"  class="form-control" placeholder="Zip Code">
 											<div style="padding-top:10px" id="NameResponse"></div>
 										</div>
 									</div>
@@ -225,5 +225,38 @@
                   }
             }
         })
+
+
+ 		/*var token=$('#token').val();
+        $('#username').keyup(function()
+        {
+            var value=$(this).val();
+
+            var n=value.length;
+            if(n>=5)
+            {
+            $.ajax({
+
+                method:'Post',
+                data:{_token:token,value:value},
+                url:'<?= HTTP_ROOT ?>checkUsername',
+                success:function(resp){
+                    if(resp==1)
+                    {
+                        $(#).formValidation('revalidateField', fieldName);
+                    }
+                    else
+                    {
+                        //alert('Email Does not Exist');
+                        $(#).formValidation('revalidateField', fieldName);
+
+                    }
+                }
+
+
+            });
+        }
+            
+        });*/
     });
 </script>

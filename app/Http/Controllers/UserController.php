@@ -176,7 +176,8 @@ class UserController extends Controller
     }
 
     public function admin_editPlans(){
-       return view('user.admin_editPlans');
+      $plans= DB::table('plans')->get();
+       return view('user.admin_editPlans')->with('plans',$plans);
     }
 
     public function admin_selectMethod($id=null){
@@ -184,11 +185,43 @@ class UserController extends Controller
        $planId=convert_uudecode(base64_decode($id));
        return view('user.admin_selectMethod')->with('planId',$planId);
     }
+    public function admin_edit_plan($id=null){
+
+      $ide=convert_uudecode(base64_decode($id));
+      $record=DB::table('plans')->where('id',$ide)->first();
+     // echo "<pre>"; print_r($record);die;
+      if(!empty($_POST)){
+          DB::table('plans')->where('id',$ide)->update($_POST);
+         $plans= DB::table('plans')->get();
+          Session::flash('flash_message_success', 'Record Updated Successfully.');
+          return Redirect::action('UserController@admin_editPlans')->with('plans',$plans);
+
+      }
+      else
+      {
+        return view('user.admin_edit_plan')->with('record',$record);
+      }
+    }
 
     public function admin_checkEmail()
     {
 
       $data=DB::table('admins')->where('email_id',$_POST['value'])->first();
+      if(!empty($data))
+      {
+        echo 1;die;
+      }
+      else
+      {
+        echo 0;die;
+      }
+    
+    }
+
+     public function admin_checkUsername()
+    {
+        //echo $_POST['value'];die;
+      $data=DB::table('users')->where('username',$_POST['value'])->first();
       if(!empty($data))
       {
         echo 1;die;

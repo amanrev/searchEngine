@@ -30,7 +30,7 @@
 							</div>
 						</div>
 						<div class="portlet-body form">
-							<form id="addUserForm" enctype="multipart/form-data" method="post" action="{{action('UserController@admin_addUser')}}" class="form-horizontal" role="form">
+							<form id="addUserForm" enctype="multipart/form-data" method="post" action="" class="form-horizontal" role="form">
 								<div class="form-body">
 								 <input type="hidden" name="_token" value="{{ csrf_token() }}">
 <!-- 

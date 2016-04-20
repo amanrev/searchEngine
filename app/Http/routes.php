@@ -40,6 +40,8 @@ Route::group(['prefix' => 'admin'], function () {
       Route::any('/selectPlan','UserController@admin_selectPlan');
       Route::any('/editPlans','UserController@admin_editPlans');
       Route::any('/selectMethod/{id}','UserController@admin_selectMethod');
+      Route::any('/edit_plan/{id}','UserController@admin_edit_plan');
+      Route::any('/checkUsername','UserController@admin_checkUsername');
 
 
 

@@ -18,7 +18,12 @@
 					<h1>Plans </h1>
 				</div>
 			</div>
-			
+			 <?php  if(Session::has('flash_message_error')) { ?>
+             <div role="alert" class="alert alert-danger alert-dismissible fade in"> <button aria-label="Close" data-dismiss="alert" style="text-indent: 0;" class="close" type="button"><span aria-hidden="true">×</span></button> <strong>Error!</strong> {!! session('flash_message_error') !!} </div>
+           <?php  }
+              elseif(Session::has('flash_message_success')){ ?>
+               <div role="alert" class="alert alert-success alert-dismissible fade in"> <button aria-label="Close" data-dismiss="alert" style="text-indent: 0;" class="close" type="button"><span aria-hidden="true">×</span></button> <strong>Success!</strong> {!! session('flash_message_success') !!} </div>
+             <?php } ?>
 			<!-- END PAGE HEADER-->
 			<!-- BEGIN PAGE CONTENT-->
 			<div class="row">
@@ -52,10 +57,10 @@
 									 Plan 
 								</th>
 								<th>
-									 Plan Name
+									 Validity
 								</th>
 								<th>
-									 Validity
+									 Price
 								</th>
 								<th>
 									 URL's
@@ -66,23 +71,29 @@
 							</tr>
 							</thead>
 							<tbody>
+							<?php foreach($plans as $data) {?>
 							<tr class="odd gradeX">
 							
 								
 								<td></td>
-								<td>
+								<td><?= $data->heading ?>
 								</td>
 								<td>
+								<?= $data->validity ?>
+								</td>
+								<td>
+								<?= "$".$data->price ?>
 								</td>
 								<td class="center">
+								<?= $data->urls ?>
 								</td>
+								
 								<td>
-								</td>
-								<td>
-									<a style="color:green;text-decoration:none" href="">Edit <span style="color:black">|</span></a>
-									<a class="delete" style="color:red;text-decoration:none" href="">Delete</a>
+									<a style="color:green;text-decoration:none" href="<?= HTTP_ROOT ?>edit_plan/<?= base64_encode(convert_uuencode($data->id)) ?>">Edit </a>
+									<!-- <a class="delete" style="color:red;text-decoration:none" href="">Delete</a> -->
 								</td>
 							</tr>
+							<?php }?>
 							</tbody>
 							</table>
 						</div>
