@@ -30,10 +30,10 @@
 							</div>
 						</div>
 						<div class="portlet-body form">
-							<form id="addUserForm" enctype="multipart/form-data" method="post" action="" class="form-horizontal" role="form">
-								<div class="form-body">
+<!-- 							<form id="addUserForm" enctype="multipart/form-data" method="post" action="" class="form-horizontal" role="form">
+ -->								<div class="form-body">
 								 <input type="hidden" name="_token" value="{{ csrf_token() }}">
-<!-- 
+								<!-- 
 									<div  class="form-group">
 										<label class="col-md-3 control-label"> </label>
 										<div class="col-md-5">
@@ -65,6 +65,25 @@
 									
 									<h4 style="margin-left:22px;padding-top:20px"></h4>
 								   <hr>
+
+
+								   <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post" style="padding: 0; margin: 0;">
+										<input type="hidden" name="cmd" value="_xclick" />
+										<input type="hidden" name="business" value="john.clarke852@gmail.com" />
+										<input type="hidden" name="quantity" value="1" />
+										<input type="hidden" name="item_name" value="Smart Search Admin" />
+										<input type="hidden" name="amount" value="15" />
+								        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+										<input  type="hidden" name="cbt" value="Return" /> 
+										<input type="hidden" name="notify_url" value="<?= HTTP_ROOT ?>payment">
+									    <input type="hidden" name="currency_code" value="USD" />
+										<input type="hidden" name="rm" value="1" >
+									   <input type="hidden" name="return" value="<?= HTTP_ROOT ?>thanks">
+<!-- 										<input type="image" border="0" name="paypal" src="images/btn_paypal_nl.gif" onClick=""/>
+ -->									
+
+
+
 									<div class="form-group">
 										<div class="col-md-12">
 											<div class="col-md-10">
@@ -74,7 +93,7 @@
 											</div>
 										</div>
 									</div>
-							</form>
+									</form>
 						</div>
 					</div>
 				</div>

@@ -326,4 +326,40 @@ class UserController extends Controller
       }
     }
 
+    public function admin_thanks(){
+      
+       return view('user.admin_thanks');
+    }
+
+
+    public function admin_payment(){
+
+      if(!empty($_POST)){
+        // DB::table('admins')->insert(array('username'=>'hello'));
+           /* if(empty($paymentCheck)){
+                $employerPayment['EmployerPayment']['employer_id'] = $employer_id;
+                $employerPayment['EmployerPayment']['payment_status'] = $_POST['payment_status'];
+                $employerPayment['EmployerPayment']['txn_id'] = $_POST['txn_id'];
+                $employerPayment['EmployerPayment']['mc_gross'] = $_POST['mc_gross'];
+                $employerPayment['EmployerPayment']['payment_fees'] = $_POST['payment_fee'];
+                $employerPayment['EmployerPayment']['business'] = $_POST['business'];
+                $employerPayment['EmployerPayment']['payer_email'] = $_POST['payer_email'];
+                $employerPayment['EmployerPayment']['receiver_email'] = $_POST['receiver_email'];
+                $employerPayment['EmployerPayment']['payer_id'] = $_POST['payer_id'];
+                $employerPayment['EmployerPayment']['receiver_id'] = $_POST['receiver_id'];
+                $employerPayment['EmployerPayment']['ipn_track_id'] = $_POST['ipn_track_id'];
+                if($this->EmployerPayment->save($employerPayment)){
+       }
+      */
+        $data=array(
+          'payment_status'=>$_POST['payment_status'],
+          'txn_id'=>$_POST['txn_id'],
+          'mc_gross'=>$_POST['mc_gross'],
+          'payment_fees'=>$_POST['payment_fees']
+          );
+        DB::table('payment')->insert($data);
+
+    }
+  }
+
 }

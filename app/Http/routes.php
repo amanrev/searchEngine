@@ -42,6 +42,9 @@ Route::group(['prefix' => 'admin'], function () {
       Route::any('/selectMethod/{id}','UserController@admin_selectMethod');
       Route::any('/edit_plan/{id}','UserController@admin_edit_plan');
       Route::any('/checkUsername','UserController@admin_checkUsername');
+      Route::any('/thanks','UserController@admin_thanks');
+      Route::any('/payment','UserController@admin_payment');
+      Route::any('/viewUsers','UserController@admin_viewUsers');
 
 
 
@@ -52,5 +55,6 @@ Route::group(['prefix' => 'admin'], function () {
 
 });
 define('HTTP_ROOT','http://'.$_SERVER['HTTP_HOST'].'/smartsearch/admin/');
-/*define('HTTP_ROOT_MAIN','http://'.$_SERVER['HTTP_HOST'].'/boutique/public/');
-define('HTTP_ROOT_ROO','http://'.$_SERVER['HTTP_HOST'].'/boutique/');*/
+define('HTTP_ROOT_MAIN','http://'.$_SERVER['HTTP_HOST'].'/smartsearch/');
+
+/*define('HTTP_ROOT_ROO','http://'.$_SERVER['HTTP_HOST'].'/boutique/');*/
